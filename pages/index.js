@@ -17,7 +17,8 @@ const Nav = props => {
 }
 
 const NavCompose = compose(
- withState('name','setName',''),
+ withState('name', 'setName', ''),
+ withState('id', 'setId', 0),
  lifecycle({
    async componentWillMount() {
      let name = 'tae'
@@ -26,7 +27,8 @@ const NavCompose = compose(
  }),
  withHandlers({
    changeName: props => () => {
-     props.setName(newName)
+     props.setId(props.id+1)
+     props.setName(`Count ${props.id}`)
    }
  })
 )(Nav)
