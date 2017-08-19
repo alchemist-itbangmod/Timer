@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "axios": "^0.16.2",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.4.1",
+    "express": "^4.15.4",
+    "next": "^3.0.6",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "recompose": "^0.25.0",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "styled-components": "^2.1.2"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}
