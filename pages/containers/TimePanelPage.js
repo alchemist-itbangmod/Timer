@@ -44,9 +44,9 @@ const Input = styled.input`
 
 const TimePanelPage = props => (
   <Layouts style={{ color: 'white' }} >
-    <div className="columns is-mobile">
-      <div className="column level-item has-text-centered">
-        <div className="card">
+    <div className="columns">
+      <div className="column">
+        <div className="card level-item has-text-centered">
           <div className="card-content">
             <span> <Heading>Time On Display</Heading> <br /> <TimeDisplay>{props.display}</TimeDisplay></span>
           </div>
@@ -60,17 +60,17 @@ const TimePanelPage = props => (
         </div>
       </div>
       <div className="columns" style={{ padding: '0 1em'}}>
-        <div className="column is-3">
+        <div className="column is-4">
           <Control className="control">
             <Input className="input" placeholder="Hours" onChange={(e) => { props.setPropsTime(e.target.value, 'h') }} type="number" min="0" />
           </Control>
         </div>
-        <div className="column is-3">
+        <div className="column is-4">
           <Control className="control">
             <Input className="input" placeholder="Minutes" onChange={(e) => { props.setPropsTime(e.target.value, 'm') }} type="number" min="0" />
           </Control>
         </div>
-        <div className="column is-3">
+        <div className="column is-4">
           <Control className="control">
             <Input className="input" placeholder="Seconds" onChange={(e) => { props.setPropsTime(e.target.value, 's') }} type="number" min="0" />
           </Control>
