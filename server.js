@@ -51,6 +51,8 @@ io.on('connection', (socket) => {
     io.emit('disconnectedPlayer', io.engine.clientsCount);
   });
 
+  
+
   // train 1
 
   socket.on('train1', () => {
