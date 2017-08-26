@@ -1,8 +1,10 @@
 import React from 'react';
-import { compose,
-         withState,
-         withHandlers,
-         lifecycle } from 'recompose';
+import {
+  compose,
+  withState,
+  withHandlers,
+  lifecycle
+} from 'recompose';
 
 import styled from 'styled-components';
 import Container from '../components/layouts'
@@ -13,7 +15,24 @@ import timer from 'moment-timer'
 
 const TimePage = props => (
   <Container style={{ flexDirection: 'column' }} >
-    <span>{ props.display }</span>
+    <span> display {props.display}</span>
+    <span> current time {props.time.format('HH:mm:ss')}</span>
+    <br />
+    {props.hours}:{props.minutes}:{props.seconds}
+    <br />
+    Hr
+    <input onChange={(e) => { props.setPropsTime(e.target.value, 'h') }} type="number" min="0" />
+    Min
+    <input onChange={(e) => { props.setPropsTime(e.target.value, 'm') }} type="number" min="0" />
+    Sec
+    <input onChange={(e) => { props.setPropsTime(e.target.value, 's') }} type="number" min="0" />
+
+    <br />
+    <button onClick={() => { props.setTimer(props) }}> set time </button>
+    <br />
+
+    <button onClick={() => { props.startTime(props) }}> Start </button>
+    <button onClick={() => { props.stopTime(props) }}> Stop </button>
   </Container>
 )
 
@@ -26,17 +45,17 @@ const TimePageCompose = compose(
   withState('minutes', 'setMinute', '00'),
   withState('seconds', 'setSecond', '00'),
   withHandlers({
-    startTime : props => () => {
+    startTime: props => () => {
       console.log('start')
-      if(props.display !== '00:00:00') {
+      if (props.display !== '00:00:00') {
         props.reduceTime.start()
       }
     },
-    stopTime : props => () => {
+    stopTime: props => () => {
       console.log('stop')
       props.reduceTime.stop()
     },
-    setTimer : props => () => {
+    setTimer: props => () => {
       let { hours, minutes, seconds, setMs, time, zeroTime } = props
       let newTime = moment(0).subtract(7, 'h')
       newTime.set({
@@ -48,12 +67,12 @@ const TimePageCompose = compose(
       props.setDisplay(newTime.format('HH:mm:ss'))
     },
     setPropsTime: props => (val, key) => {
-      if (val.length <= 1) 
+      if (val.length <= 1)
         val = '0' + val
       switch (key) {
-        case 'h': props.setHour(val);break;
-        case 'm': props.setMinute(val);break;
-        default: props.setSecond(val);break;
+        case 'h': props.setHour(val); break;
+        case 'm': props.setMinute(val); break;
+        default: props.setSecond(val); break;
       }
     }
   }),

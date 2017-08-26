@@ -1,3 +1,5 @@
+import socket from '../libs/socket'
+
 import styled from 'styled-components';
 
 const Container = styled.div`
