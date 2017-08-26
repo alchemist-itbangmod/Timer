@@ -1,6 +1,5 @@
 const routes = module.exports = require('next-routes')()
 
 routes
-  .add({ name: 'room', pattern: '/room', page: './routes/room' })
-  .add({ name: 'time', pattern: '/time', page: './routes/time' })
-  // .add('time', '/time/:slug')
+  .add({ name: 'time', pattern: '/time/:slug', page: './routes/time' })
+  .add({ name: 'time-admin', pattern: '/time-admin/:slug', page: './routes/time-panel' })

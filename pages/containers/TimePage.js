@@ -3,21 +3,34 @@ import { compose,
          withState,
          withHandlers,
          lifecycle } from 'recompose';
+import socket from '../libs/socket';
 
 import styled from 'styled-components';
-import Container from '../components/layouts'
+import Layouts from '../components/layouts'
 
 import Moment from 'react-moment';
 import moment from 'moment'
 import timer from 'moment-timer'
 
+const TimeDisplay = styled.span`
+  font-family: digital;
+  font-size: 7em;
+  color: #fff;
+`
+const Container = Layouts.extend`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const TimePage = props => (
   <Container style={{ flexDirection: 'column' }} >
-    <span>{ props.display }</span>
+    <TimeDisplay>{ props.display }</TimeDisplay>
   </Container>
 )
 
 const TimePageCompose = compose(
+  withState('room', 'setRoom', ''),
   withState('time', 'setCurrentTime', moment(0).subtract(7, 'h')),
   withState('zeroTime', 'setZeroTime', moment(0).subtract(7, 'h')),
   withState('reduceTime', 'setReduce', ''),
@@ -36,14 +49,10 @@ const TimePageCompose = compose(
       console.log('stop')
       props.reduceTime.stop()
     },
-    setTimer : props => () => {
+    setTimer : props => (val) => {
+      console.log(val)
       let { hours, minutes, seconds, setMs, time, zeroTime } = props
-      let newTime = moment(0).subtract(7, 'h')
-      newTime.set({
-        'hour': +hours,
-        'minute': +minutes,
-        'second': +seconds
-      });
+      let newTime = moment(val)
       props.setCurrentTime(newTime)
       props.setDisplay(newTime.format('HH:mm:ss'))
     },
@@ -59,8 +68,9 @@ const TimePageCompose = compose(
   }),
   lifecycle({
     async componentWillMount() {
-      let { setReduce, time, setCurrentTime } = this.props
-
+      let { setReduce, time, setCurrentTime , setRoom } = this.props
+      await setRoom(this.props.url.query.slug)
+      console.log(this.props.url.query.slug)
       let reduceTime = moment.duration(1, "s").timer({ loop: true, start: false }, () => {
         let { time, setCurrentTime } = this.props
         setCurrentTime(time.subtract(1, 's'))
@@ -72,6 +82,16 @@ const TimePageCompose = compose(
         }
       })
       this.props.setReduce(reduceTime)
+    },
+    async componentDidMount() {
+      socket.on(this.props.url.query.slug, (val) => {
+        switch (val.header) {
+          case 'setTime': this.props.setTimer(val.newTime); break;
+          case 'startTime': this.props.startTime(); break;
+          case 'stopTime': this.props.stopTime(); break;
+          default: break;
+        }
+      })
     }
   })
 )(TimePage)

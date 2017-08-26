@@ -1,13 +1,8 @@
-import socket from '../libs/socket'
-
 import styled from 'styled-components';
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
+const Layouts = styled.div`
+  min-height: 100vh;
+  // min-width: 100vw;
   font-size: 2em;
 `
-export default Container
+export default Layouts

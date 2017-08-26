@@ -12,7 +12,6 @@ server.use(cors())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 
-const io = require('socket.io').listen(3002)
 
 // const app = next({ dev })
 // const handle = app.getRequestHandler()
@@ -37,6 +36,8 @@ const app = server.listen(3001, (err) => {
   console.log('> Ready on http://localhost:3001')
 })
 
+const io = require('socket.io').listen(3002)
+
 io.on('connection', (socket) => {
 
   console.log('a user connected ' + socket.id);
@@ -56,9 +57,9 @@ io.on('connection', (socket) => {
     console.log('on @ train1')
   })
 
-  socket.on('train1-admin', (time) => {
+  socket.on('train1-admin', (val) => {
     console.log('on @ train1-admin')
-    io.emit('train1', { time: time })
+    io.emit('train1', val);
   })
 
   // train 2
@@ -67,9 +68,9 @@ io.on('connection', (socket) => {
     console.log('on @ train2')
   })
 
-  socket.on('train2-admin', (time) => {
+  socket.on('train2-admin', (val) => {
     console.log('on @ train2-admin')
-    io.emit('train2', { time: time })
+    io.emit('train2', val )
   })
 
   // train 3
@@ -78,9 +79,9 @@ io.on('connection', (socket) => {
     console.log('train3')
   })
 
-  socket.on('train3-admin', (time) => {
+  socket.on('train3-admin', (val) => {
     console.log('on @ train3-admin')
-    io.emit('train3', { time: time })
+    io.emit('train3', val)
   })
 
   // train 4
@@ -89,9 +90,9 @@ io.on('connection', (socket) => {
     console.log('train4')
   })
 
-  socket.on('train4-admin', (time) => {
+  socket.on('train4-admin', (val) => {
     console.log('on @ train4-admin')
-    io.emit('train4', { time: time })
+    io.emit('train4', val)
   })
 
 })

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
 import { Link } from './routes'
-import styled, { injectGlobal }from 'styled-components'
+import styled from 'styled-components'
 import {compose, 
         withState, 
         lifecycle, 
@@ -10,14 +9,9 @@ import {compose,
 import Particles from 'react-particles-js'
 import ParticleStar from '../particle_.json'
 
-injectGlobal`
-  body {
-    margin: 0;
-    background-color: #17182f;
-  }
-`
+import './globalStyle'
 
-const Div = styled.div`
+const Container = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -43,6 +37,11 @@ const Input = styled.input`
   margin: 0 10px;
 `
 
+const H1 = styled.h1`
+  font-size: 5em;
+  margin-bottom: 0.5em;
+`
+
 const Nav = props => {
   return (
     <div>
@@ -50,27 +49,28 @@ const Nav = props => {
         <title>timer | Pin</title>
       </Head>
 
-      <Link route='room'>
-        <a>Room</a>
-      </Link>
-      <br />
-      <Link route='time'>
-        <a>Time</a>
-      </Link>
-      
       <Particles 
         style={{
           position: 'absolute',
           width: '100%',
           height: '100%',
-          zIndex: 0
+          zIndex: -1
         }}
         params={ ParticleStar }/>
-      <Div>
+      <Container>
         <div>
-          <h1>Alchemist Timer</h1>
+
+          <br />
+          <Link route='/time/train1'>
+            <a>Time</a>
+          </Link>
+          <br />
+          <Link route='/time-admin/train1'>
+            <a>Time Admin</a>
+          </Link>
+
+          <H1>Alchemist Timer</H1>
           <PinStyled>
-            test
             <form>
               {
                 [0,1,2,3,4,5].map((e)=>(
@@ -87,7 +87,7 @@ const Nav = props => {
             </form>
           </PinStyled>
         </div>
-      </Div>
+      </Container>
       {/* <PinStyled>
 
       </PinStyled> */}
