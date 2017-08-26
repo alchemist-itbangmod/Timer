@@ -1,0 +1,21 @@
+{
+  "env": {
+    "development": {
+      "presets": "react"
+    },
+    "production": {
+      "presets": "react"
+    },
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": "commonjs"
+          }
+        ],
+        "react"
+      ]
+    }
+  }
+}
