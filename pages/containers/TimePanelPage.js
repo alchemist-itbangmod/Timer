@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head'
 import { compose,
          withState,
          withHandlers,
@@ -21,7 +22,8 @@ const Heading = styled.span`
 `
 
 const TimeDisplay = styled.div`
-  font-size: 3em;
+  font-size: 4em;
+  line-height: 1.1em;
 `
 
 const SelectTime = styled.div`
@@ -37,60 +39,101 @@ const Control = styled.div`
 `
 
 const Input = styled.input`
-  // height: 90px;
-  // width: 150px;
-  font-size: 1.6em;
+  height: 90px;    
+  width: 75%;
+  text-align: center;
+  font-size: 3.6em;
 `
 
 const TimePanelPage = props => (
-  <Layouts style={{ color: 'white' }} >
-    <div className="columns">
-      <div className="column">
-        <div className="card level-item has-text-centered">
-          <div className="card-content">
-            <span> <Heading>Time On Display</Heading> <br /> <TimeDisplay>{props.display}</TimeDisplay></span>
+  <div style={{ minHeight: '100vh'}}>
+    <Head>
+      <title> Control Panel | {props.room.substr(0, 6).toUpperCase()} </title>
+    </Head>
+    <Layouts style={{ color: 'white' }} >
+      <div className="columns">
+        <div className="column">
+          <div className="card level-item has-text-centered">
+            <div className="card-content">
+              <span> <Heading>Time On Display : <b>{props.room.substr(0, 6).toUpperCase()}</b> </Heading> <br /> <TimeDisplay>{props.display}</TimeDisplay></span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div className="container">
-      <div className="columns is-mobile">
-        <div className="column level-item has-text-centered">
-          <span> <Heading>Select Time</Heading> <br /> <SelectTime>{props.hours}:{props.minutes}:{props.seconds}</SelectTime> </span>
+        <div className="columns" style={{marginTop:'2em'}}>
+          <div className="column level-item has-text-centered">
+            <span> <Heading>Select Time</Heading> <br /> <SelectTime>{props.hours}:{props.minutes}:{props.seconds}</SelectTime> </span>
+          </div>
         </div>
-      </div>
-      <div className="columns" style={{ padding: '0 1em'}}>
-        <div className="column is-4">
-          <Control className="control">
-            <Input className="input" placeholder="Hours" onChange={(e) => { props.setPropsTime(e.target.value, 'h') }} type="number" min="0" />
-          </Control>
+        <div style={{ padding: '0 1em 1em 1em', margin: '0 0 2em 0'}}>
+          <div className="columns is-desktop">
+            <div className="column">
+              <Control className="control">
+                <Input className="input" placeholder="Hours" onChange={(e) => { props.setPropsTime(e.target.value, 'h') }} type="number" min="0" />
+              </Control>
+            </div>
+            <div className="column">
+              <Control className="control">
+                <Input className="input" placeholder="Minutes" onChange={(e) => { props.setPropsTime(e.target.value, 'm') }} type="number" min="0" />
+              </Control>
+            </div>
+            <div className="column">
+              <Control className="control">
+                <Input className="input" placeholder="Seconds" onChange={(e) => { props.setPropsTime(e.target.value, 's') }} type="number" min="0" />
+              </Control>
+            </div>
+          </div>
         </div>
-        <div className="column is-4">
-          <Control className="control">
-            <Input className="input" placeholder="Minutes" onChange={(e) => { props.setPropsTime(e.target.value, 'm') }} type="number" min="0" />
-          </Control>
+        <div className="card level-item has-text-centered">
+          <div style={{ width: '100%'}} className="card-content">
+            <div className="columns" style={{ padding: '0 1em', marginTop: '2em' }}>
+              <div className="column is-12 level-item has-text-centered">
+                <a style={{ fontSize: '1.9em',color: 'hsl(217, 71%, 53%)' }} onClick={() => { props.setTimer(props) }}>
+                  <span className="icon is-large">
+                    <i className="fa fa-cog"></i>
+                  </span>
+                  <div>
+                    Set Time
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div className="columns" style={{ padding: '0 1em', justifyContent: 'center', marginTop: '2.3em', marginBottom: '1em' }}>
+              <div className="column is-4 level-item has-text-centered">
+                <a style={{ fontSize: '1.9em',color: 'hsl(171, 100%, 41%)'}} onClick={() => { props.startTime(props) }}>
+                  <span className="icon is-large">
+                    <i className="fa fa-play-circle"></i>
+                  </span>
+                  <div>
+                    Start
+                  </div>
+                </a>
+              </div>
+              <div className="column is-4 level-item has-text-centered">
+                <a style={{ fontSize: '1.9em',color: '#ff3860'}} onClick={() => { props.stopTime(props) }}>
+                  <span className="icon is-large">
+                    <i className="fa fa-stop-circle"></i>
+                  </span>
+                  <div>
+                    Stop
+                  </div>
+                </a>
+              </div>
+              <div className="column is-4 level-item has-text-centered">
+                <a style={{ fontSize: '1.9em',color: 'rgb(255, 204, 1)'}} onClick={() => { props.clearTime(props) }}>
+                  <span className="icon is-large">
+                    <i className="fa fa-repeat"></i>
+                  </span>
+                  <div>
+                    Clear
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="column is-4">
-          <Control className="control">
-            <Input className="input" placeholder="Seconds" onChange={(e) => { props.setPropsTime(e.target.value, 's') }} type="number" min="0" />
-          </Control>
-        </div>
-      </div>
-      <div className="columns is-mobile" style={{ padding: '0 1em' }}>
-        <div className="column is-12 level-item has-text-centered">
-          <br />
-          <button className="button is-info is-large" onClick={() => { props.setTimer(props) }}> Set Time </button>
-        </div>
-      </div>
-      <div className="columns is-mobile" style={{ padding: '0 1em', marginTop: '0.6em' }}>
-        <div className="column level-item has-text-centered">
-          <button className="button is-primary is-large" onClick={() => { props.startTime(props) }}> Start </button>&nbsp;&nbsp;&nbsp;&nbsp;
-          <button className="button is-danger is-large" onClick={() => { props.stopTime(props) }}> Stop </button>&nbsp;&nbsp;&nbsp;&nbsp;
-          <button className="button is-warning is-large" onClick={() => { props.clearTime(props) }}> Clear </button>
-        </div>
-      </div>
-    </div>
-  </Layouts>
+    </Layouts>
+  </div>
 )
 
 const TimePanelPageCompose = compose(
@@ -150,7 +193,6 @@ const TimePanelPageCompose = compose(
   lifecycle({
     async componentWillMount() {
       let { setReduce, time, setCurrentTime, setRoom } = this.props
-      console.log(this.props.url.query.slug)
       setRoom(`${this.props.url.query.slug}-admin`)
 
       let reduceTime = moment.duration(1, "s").timer({ loop: true, start: false }, () => {
