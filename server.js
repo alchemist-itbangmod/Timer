@@ -61,6 +61,39 @@ io.on('connection', (socket) => {
   });
 
   
+  socket.on('auth', (data) => {
+    console.log(data)
+    switch (data.key) {
+      // Room
+      case '2HYPXQ':        
+        socket.emit('auth', { room: 'time/train1' });
+        break;
+      case 'ZKTUFF':        
+        socket.emit('auth', { room: 'time/train2' });
+        break;
+      case 'L7DWTW':        
+        socket.emit('auth', { room: 'time/train3' });
+        break;
+      case 'C3GGEY':        
+        socket.emit('auth', { room: 'time/train4' });
+        break;
+      case 'SHFCE2':        
+        socket.emit('auth', { room: 'time-admin/train1' });
+        break;
+      case 'J3BWD9':        
+        socket.emit('auth', { room: 'time-admin/train2' });
+        break;
+      case 'W87ZL2':        
+        socket.emit('auth', { room: 'time-admin/train3' });
+        break;
+      case '8YPSZF':        
+        socket.emit('auth', { room: 'time-admin/train4' });
+        break;
+      default: 
+        socket.emit('auth', { room: false });
+        break;
+    }
+  })
 
   // train 1
 
