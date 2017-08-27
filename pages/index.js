@@ -12,22 +12,9 @@ import socket from './libs/socket'
 import { Link } from './routes'
   
 import styled from 'styled-components'
-import Particles from 'react-particles-js'
-import ParticleStar from '../particle_.json'
 
 
 import './globalStyle'
-
-const BigBox = styled.div`
-  position: absolute;
-  width: 100vw;
-  min-height: 100vh;
-  z-index: 1;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-`
 
 const Index = props => {
   return (
@@ -61,16 +48,6 @@ const Index = props => {
             </form>
           </div>
         </div>
-        <Particles
-          style={{
-            position: 'absolute',
-            width: '100vw',
-            minHeight: '95vh',
-            zIndex: 0,
-            left: 0,
-            top: 0
-          }}
-          params={ParticleStar} />
       </div>
     </div>
   )
