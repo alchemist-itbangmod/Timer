@@ -5,36 +5,45 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const path = require('path')
 
-const dev = process.env.NODE_ENV !== 'production'
 const server = express()
 
 server.use(cors())
 server.use(bodyParser.urlencoded({ extended: true }))
 server.use(bodyParser.json())
 
+const { parse } = require('url');
 
-// const app = next({ dev })
-// const handle = app.getRequestHandler()
+// const DEV = process.env.ENVIRONMENT !== 'PRODUCTION';
+// const PORT = 3000;
 
+// const app = next({ dir: '.', dev: DEV });
+// const handle = app.getRequestHandler();
+
+// const getRoutes = require('./routes');
+
+// const routes = getRoutes();
 // app.prepare().then(() => {
-
-//   server.get('/hello', (req, res) => {
-//     return app.render(req, res, '/b', {
-//       ...req.query,
-//       subreddit: req.params.subreddit
-//     })
-//   })
-
+//   const server = express();
 //   server.get('*', (req, res) => {
-//     handle(req, res)
-//   })
-//   server.listen(3000)
-// })
+//     const parsedUrl = parse(req.url, true);
+//     const { pathname, query } = parsedUrl;
+//     const route = routes[pathname];
+//     if (route) {
+//       return app.render(req, res, route.page, route.query);
+//     }
+//     return handle(req, res);
+//   });
 
-const app = server.listen(3001, (err) => {
-  if (err) throw err;
-  console.log('> Ready on http://localhost:3001')
-})
+//   server.listen(PORT, (err) => {
+//     if (err) throw err;
+//     console.log(`> Ready for liftoff: http://localhost:${PORT}`);
+//   });
+// });
+
+// const app = server.listen(3001, (err) => {
+//   if (err) throw err;
+//   console.log('> Ready on http://localhost:3001')
+// })
 
 const io = require('socket.io').listen(3002)
 
