@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head'
 import { compose,
          withState,
          withHandlers,
@@ -17,16 +18,32 @@ const TimeDisplay = styled.span`
   font-size: 7em;
   color: #fff;
 `
+const RoomDisplay = styled.span`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1em;
+  font-size: 40px;
+  color: #fff;
+  font-family: BlinkMacSystemFont,-apple-system, "Segoe UI","Roboto","Oxygen", "Ubuntu","Cantarell","Fira Sans", "Droid Sans","Helvetica Neue","Helvetica"," Arial",sans-serif;
+`
 const Container = Layouts.extend`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+  `
 
 const TimePage = props => (
-  <Container style={{ flexDirection: 'column' }} >
-    <TimeDisplay>{ props.display }</TimeDisplay>
-  </Container>
+  <div>
+    <Head>
+      <title> Alchemist Timer | {props.room.substr(0, 6).toUpperCase()} </title>
+    </Head>
+    <Container className="background" style={{ flexDirection: 'column' }} >
+      <TimeDisplay>{ props.display }</TimeDisplay>
+      
+    </Container>
+    <RoomDisplay> Room : <b> {props.room.toUpperCase()} </b></RoomDisplay>
+  </div>
 )
 
 const TimePageCompose = compose(
@@ -70,7 +87,6 @@ const TimePageCompose = compose(
     async componentWillMount() {
       let { setReduce, time, setCurrentTime , setRoom } = this.props
       await setRoom(this.props.url.query.slug)
-      console.log(this.props.url.query.slug)
       let reduceTime = moment.duration(1, "s").timer({ loop: true, start: false }, () => {
         let { time, setCurrentTime } = this.props
         setCurrentTime(time.subtract(1, 's'))

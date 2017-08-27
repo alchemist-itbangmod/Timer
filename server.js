@@ -46,6 +46,7 @@ const { parse } = require('url');
 // })
 
 const io = require('socket.io').listen(3002)
+console.log('ready')
 
 io.on('connection', (socket) => {
 
@@ -77,6 +78,12 @@ io.on('connection', (socket) => {
       case 'C3GGEY':        
         socket.emit('auth', { room: 'time/train4' });
         break;
+      case 'SXZZFD':        
+        socket.emit('auth', { room: 'time/train5' });
+        break;
+      case 'DEMONM':        
+        socket.emit('auth', { room: 'time/taehub' });
+        break;
       case 'SHFCE2':        
         socket.emit('auth', { room: 'time-admin/train1' });
         break;
@@ -88,6 +95,12 @@ io.on('connection', (socket) => {
         break;
       case '8YPSZF':        
         socket.emit('auth', { room: 'time-admin/train4' });
+        break;
+      case 'FKLJSX':        
+        socket.emit('auth', { room: 'time-admin/train5' });
+        break;
+      case 'DEMOAD':        
+        socket.emit('auth', { room: 'time-admin/taehub' });
         break;
       default: 
         socket.emit('auth', { room: false });
@@ -137,6 +150,28 @@ io.on('connection', (socket) => {
   socket.on('train4-admin', (val) => {
     console.log('on @ train4-admin')
     io.emit('train4', val)
+  })
+
+  // train 5
+
+  socket.on('train5', () => {
+    console.log('train5')
+  })
+
+  socket.on('train5-admin', (val) => {
+    console.log('on @ train5-admin')
+    io.emit('train5', val)
+  })
+
+  // demo
+
+  socket.on('taehub', () => {
+    console.log('taehub room')
+  })
+
+  socket.on('taehub-admin', (val) => {
+    console.log('on @ taehub')
+    io.emit('taehub', val)
   })
 
 })
