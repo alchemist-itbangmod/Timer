@@ -9,17 +9,8 @@ import socket from '../libs/socket';
 import styled from 'styled-components';
 import Layouts from '../components/layouts'
 
-import Moment from 'react-moment';
 import moment from 'moment'
 import timer from 'moment-timer'
-
-const Heading = styled.span`
-  font-family: BlinkMacSystemFont, -apple-system, 
-  "Segoe UI", "Roboto", "Oxygen", 
-  "Ubuntu", "Cantarell", "Fira Sans", 
-  "Droid Sans", "Helvetica Neue", "Helvetica", "
-  Arial", sans-serif;
-`
 
 const TimeDisplay = styled.div`
   font-size: 4em;
@@ -55,31 +46,31 @@ const TimePanelPage = props => (
         <div className="column">
           <div className="card level-item has-text-centered">
             <div className="card-content">
-              <span> <Heading>Time On Display : <b>{props.room.substr(0, 6).toUpperCase()}</b> </Heading> <br /> <TimeDisplay>{props.display}</TimeDisplay></span>
+              <span> <span className="font">Time On Display : <b>{props.room.substr(0, props.room.indexOf('-')).toUpperCase()}</b> </span> <br /> <TimeDisplay>{props.display}</TimeDisplay></span>
             </div>
           </div>
         </div>
       </div>
-        <div className="columns" style={{marginTop:'2em'}}>
-          <div className="column level-item has-text-centered">
-            <span> <Heading>Select Time</Heading> <br /> <SelectTime>{props.hours}:{props.minutes}:{props.seconds}</SelectTime> </span>
+        <div className="columns" style={{marginTop:'1.3em'}}>
+          <div className="column level-item has-text-centered animated flash">
+          <span> <span className="font">Select Time</span> <br /> <SelectTime>{props.hours}:{props.minutes}:{props.seconds}</SelectTime> </span>
           </div>
         </div>
         <div style={{ padding: '0 1em 1em 1em', margin: '0 0 2em 0'}}>
           <div className="columns is-desktop">
             <div className="column">
               <Control className="control">
-                <Input className="input" placeholder="Hours" onChange={(e) => { props.setPropsTime(e.target.value, 'h') }} type="number" min="0" />
+                <Input id="hr" className="input" placeholder="Hours" onChange={(e) => { props.setPropsTime(e.target.value, 'h') }} type="number" min="0" />
               </Control>
             </div>
             <div className="column">
               <Control className="control">
-                <Input className="input" placeholder="Minutes" onChange={(e) => { props.setPropsTime(e.target.value, 'm') }} type="number" min="0" />
+                <Input id="min" className="input" placeholder="Minutes" onChange={(e) => { props.setPropsTime(e.target.value, 'm') }} type="number" min="0" />
               </Control>
             </div>
             <div className="column">
               <Control className="control">
-                <Input className="input" placeholder="Seconds" onChange={(e) => { props.setPropsTime(e.target.value, 's') }} type="number" min="0" />
+                <Input id="sec" className="input" placeholder="Seconds" onChange={(e) => { props.setPropsTime(e.target.value, 's') }} type="number" min="0" />
               </Control>
             </div>
           </div>
@@ -169,6 +160,10 @@ const TimePanelPageCompose = compose(
       props.setCurrentTime(newTime)
       props.setDisplay(newTime.format('HH:mm:ss'))
       socket.emit(`${props.room}`, { header: 'setTime', newTime: newTime})
+      document.getElementById('hr').value = '';
+      document.getElementById('min').value = '';
+      document.getElementById('sec').value = '';
+      console.log(document.getElementById('hr').value)
     },
     setPropsTime: props => (val, key) => {
       switch (val.length) {

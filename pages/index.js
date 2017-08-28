@@ -39,12 +39,14 @@ const Index = props => {
               />
               <br />
               <br />
-              <Link route={props.url}>
-                <a onClick={()=>{ props.login(props) }} className="btn">
-                  Login
-                  <span className="line-style" />
-                </a>
-              </Link>
+              <span >
+                <Link route={props.url}>
+                  <a onClick={()=>{ props.login(props) }} className="btn animated pulse">
+                    Join
+                    <span className="line-style" />
+                  </a>
+                </Link>
+              </span>
             </form>
           </div>
         </div>

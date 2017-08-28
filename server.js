@@ -84,6 +84,21 @@ io.on('connection', (socket) => {
       case 'DEMONM':        
         socket.emit('auth', { room: 'time/taehub' });
         break;
+      case 'ALC001':        
+        socket.emit('auth', { room: 'time/alchemist1' });
+        break;
+      case 'ALC002':        
+        socket.emit('auth', { room: 'time/alchemist2' });
+        break;
+      case 'ALC003':        
+        socket.emit('auth', { room: 'time/alchemist3' });
+        break;
+      case 'ALC004':        
+        socket.emit('auth', { room: 'time/alchemist4' });
+        break;
+      case 'ALC005':        
+        socket.emit('auth', { room: 'time/alchemist5' });
+        break;
       case 'SHFCE2':        
         socket.emit('auth', { room: 'time-admin/train1' });
         break;
@@ -101,6 +116,21 @@ io.on('connection', (socket) => {
         break;
       case 'DEMOAD':        
         socket.emit('auth', { room: 'time-admin/taehub' });
+        break;
+      case 'ALC101':        
+        socket.emit('auth', { room: 'time-admin/alchemist1' });
+        break;
+      case 'ALC102':        
+        socket.emit('auth', { room: 'time-admin/alchemist2' });
+        break;
+      case 'ALC103':        
+        socket.emit('auth', { room: 'time-admin/alchemist3' });
+        break;
+      case 'ALC104':        
+        socket.emit('auth', { room: 'time-admin/alchemist4' });
+        break;
+      case 'ALC105':        
+        socket.emit('auth', { room: 'time-admin/alchemist5' });
         break;
       default: 
         socket.emit('auth', { room: false });
@@ -172,6 +202,56 @@ io.on('connection', (socket) => {
   socket.on('taehub-admin', (val) => {
     console.log('on @ taehub')
     io.emit('taehub', val)
+  })
+
+  // alc 1
+  socket.on('alchemist1', () => {
+    console.log('alchemist1 room')
+  })
+
+  socket.on('alchemist1-admin', (val) => {
+    console.log('on @ alchemist1')
+    io.emit('alchemist1', val)
+  })
+  
+  // alc 2
+  socket.on('alchemist2', () => {
+    console.log('alchemist2 room')
+  })
+
+  socket.on('alchemist2-admin', (val) => {
+    console.log('on @ alchemist2')
+    io.emit('alchemist2', val)
+  })
+
+  // alc 3
+  socket.on('alchemist3', () => {
+    console.log('alchemist3 room')
+  })
+
+  socket.on('alchemist3-admin', (val) => {
+    console.log('on @ alchemist3')
+    io.emit('alchemist3', val)
+  })
+
+  // alc 4
+  socket.on('alchemist4', () => {
+    console.log('alchemist4 room')
+  })
+
+  socket.on('alchemist4-admin', (val) => {
+    console.log('on @ alchemist4')
+    io.emit('alchemist4', val)
+  })
+
+  // alc 5
+  socket.on('alchemist5', () => {
+    console.log('alchemist5 room')
+  })
+
+  socket.on('alchemist5-admin', (val) => {
+    console.log('on @ alchemist5')
+    io.emit('alchemist5', val)
   })
 
 })

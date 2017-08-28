@@ -2,8 +2,8 @@ import { injectGlobal } from 'styled-components'
 
 injectGlobal`
   @import url('./static/css/bulma.css');
-  @import url('./static/css/animate.css');
   @import url('./static/css/font-awesome.min.css');
+  @import url('./static/css/animate.css');
 
   
   @font-face {
@@ -13,14 +13,21 @@ injectGlobal`
   html {
     height: auto;
     min-height: 100vh;
-    background-image : url('./static/img/bgdesktop.png');
-    background-size: cover;
-    background-attachment: fixed;
+    background-color: #24292D;
+    // background-image : url('./static/img/bgdesktop.png');
+    // background-size: cover;
+    // background-attachment: fixed;
   }
   body {
     font-family: 'digital';
     margin: 0;
-    // background-color: #17182f;
+  }
+  .font {
+    font-family: BlinkMacSystemFont, -apple-system, 
+    "Segoe UI", "Roboto", "Oxygen", 
+    "Ubuntu", "Cantarell", "Fira Sans", 
+    "Droid Sans", "Helvetica Neue", "Helvetica", "
+    Arial", sans-serif;
   }
   
   ::-webkit-scrollbar { 
