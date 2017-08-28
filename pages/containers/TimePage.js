@@ -33,14 +33,17 @@ const Container = Layouts.extend`
   align-items: center;
   `
 
+const TimeShow = props => (
+  <TimeDisplay>{props.display}</TimeDisplay>
+)
+
 const TimePage = props => (
   <div>
     <Head>
       <title> Alchemist Timer | {props.room.substr(0, 6).toUpperCase()} </title>
     </Head>
     <Container className="background" style={{ flexDirection: 'column' }} >
-      <TimeDisplay>{ props.display }</TimeDisplay>
-      
+      <TimeShow display={props.display} />
     </Container>
     <RoomDisplay> Room : <b> {props.room.toUpperCase()} </b></RoomDisplay>
   </div>
@@ -49,7 +52,6 @@ const TimePage = props => (
 const TimePageCompose = compose(
   withState('room', 'setRoom', ''),
   withState('time', 'setCurrentTime', moment(0).subtract(7, 'h')),
-  withState('zeroTime', 'setZeroTime', moment(0).subtract(7, 'h')),
   withState('reduceTime', 'setReduce', ''),
   withState('display', 'setDisplay', '00:00:00'),
   withState('hours', 'setHour', '00'),
@@ -57,18 +59,15 @@ const TimePageCompose = compose(
   withState('seconds', 'setSecond', '00'),
   withHandlers({
     startTime : props => () => {
-      console.log('start')
       if(props.display !== '00:00:00') {
         props.reduceTime.start()
       }
     },
     stopTime : props => () => {
-      console.log('stop')
       props.reduceTime.stop()
     },
     setTimer : props => (val) => {
-      console.log(val)
-      let { hours, minutes, seconds, setMs, time, zeroTime } = props
+      let { hours, minutes, seconds, time } = props
       let newTime = moment(val)
       props.setCurrentTime(newTime)
       props.setDisplay(newTime.format('HH:mm:ss'))

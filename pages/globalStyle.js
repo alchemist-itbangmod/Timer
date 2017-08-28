@@ -20,7 +20,6 @@ injectGlobal`
   body {
     font-family: 'digital';
     margin: 0;
-    // background-color: #17182f;
   }
   
   ::-webkit-scrollbar { 
