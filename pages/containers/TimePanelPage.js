@@ -53,7 +53,7 @@ const TimePanelPage = props => (
       </div>
         <div className="columns" style={{marginTop:'2em'}}>
           <div className="column level-item has-text-centered">
-            <span> <Heading>Select Time</Heading> <br /> <SelectTime>{props.hours}:{props.minutes}:{props.seconds}</SelectTime> </span>
+          <span> <span className="font">Select Time</span> <br /> <SelectTime>{props.hours}:{props.minutes}:{props.seconds}</SelectTime> </span>
           </div>
         </div>
         <div style={{ padding: '0 1em 1em 1em', margin: '0 0 2em 0'}}>

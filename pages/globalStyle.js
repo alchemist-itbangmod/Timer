@@ -12,7 +12,7 @@ injectGlobal`
   html {
     height: auto;
     min-height: 100vh;
-    background-color: #000;
+    background-color: #24292D;
     // background-image : url('./static/img/bgdesktop.png');
     // background-size: cover;
     // background-attachment: fixed;
