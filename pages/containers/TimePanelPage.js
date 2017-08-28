@@ -39,7 +39,7 @@ const Input = styled.input`
 const TimePanelPage = props => (
   <div style={{ minHeight: '100vh'}}>
     <Head>
-      <title> Control Panel | {props.room.substr(0, 6).toUpperCase()} </title>
+      <title> Control Panel | {props.room.substr(0, props.room.indexOf('-')).toUpperCase()} </title>
     </Head>
     <Layouts style={{ color: 'white' }} >
       <div className="columns">
