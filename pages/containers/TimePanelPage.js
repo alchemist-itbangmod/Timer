@@ -9,17 +9,8 @@ import socket from '../libs/socket';
 import styled from 'styled-components';
 import Layouts from '../components/layouts'
 
-import Moment from 'react-moment';
 import moment from 'moment'
 import timer from 'moment-timer'
-
-const Heading = styled.span`
-  font-family: BlinkMacSystemFont, -apple-system, 
-  "Segoe UI", "Roboto", "Oxygen", 
-  "Ubuntu", "Cantarell", "Fira Sans", 
-  "Droid Sans", "Helvetica Neue", "Helvetica", "
-  Arial", sans-serif;
-`
 
 const TimeDisplay = styled.div`
   font-size: 4em;
@@ -55,7 +46,7 @@ const TimePanelPage = props => (
         <div className="column">
           <div className="card level-item has-text-centered">
             <div className="card-content">
-              <span> <Heading>Time On Display : <b>{props.room.substr(0, 6).toUpperCase()}</b> </Heading> <br /> <TimeDisplay>{props.display}</TimeDisplay></span>
+              <span> <span className="font">Time On Display : <b>{props.room.substr(0, 6).toUpperCase()}</b> </span> <br /> <TimeDisplay>{props.display}</TimeDisplay></span>
             </div>
           </div>
         </div>

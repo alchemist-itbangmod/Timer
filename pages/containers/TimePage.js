@@ -9,7 +9,6 @@ import socket from '../libs/socket';
 import styled from 'styled-components';
 import Layouts from '../components/layouts'
 
-import Moment from 'react-moment';
 import moment from 'moment'
 import timer from 'moment-timer'
 
@@ -25,7 +24,6 @@ const RoomDisplay = styled.span`
   margin: 1em;
   font-size: 40px;
   color: #fff;
-  font-family: BlinkMacSystemFont,-apple-system, "Segoe UI","Roboto","Oxygen", "Ubuntu","Cantarell","Fira Sans", "Droid Sans","Helvetica Neue","Helvetica"," Arial",sans-serif;
 `
 const Container = Layouts.extend`
   display: flex;
@@ -33,19 +31,19 @@ const Container = Layouts.extend`
   align-items: center;
   `
 
-const TimeShow = props => (
-  <TimeDisplay>{props.display}</TimeDisplay>
-)
-
 const TimePage = props => (
   <div>
     <Head>
       <title> Alchemist Timer | {props.room.substr(0, 6).toUpperCase()} </title>
     </Head>
     <Container className="background" style={{ flexDirection: 'column' }} >
-      <TimeShow display={props.display} />
+      <span style={{
+        fontFamily: 'digital',
+        fontSize: '7em',
+        color: '#fff'
+      }}>{props.display}</span>
     </Container>
-    <RoomDisplay> Room : <b> {props.room.toUpperCase()} </b></RoomDisplay>
+    <RoomDisplay className="font"> Room : <b> {props.room.toUpperCase()} </b></RoomDisplay>
   </div>
 )
 
@@ -92,7 +90,6 @@ const TimePageCompose = compose(
         let displayTime = time.format("HH:mm:ss")
         this.props.setDisplay(displayTime)
         if (this.props.display === '00:00:00') {
-          console.log('stop')
           this.props.reduceTime.stop();
         }
       })
