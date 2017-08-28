@@ -46,7 +46,7 @@ const TimePanelPage = props => (
         <div className="column">
           <div className="card level-item has-text-centered">
             <div className="card-content">
-              <span> <span className="font">Time On Display : <b>{props.room.substr(0, 6).toUpperCase()}</b> </span> <br /> <TimeDisplay>{props.display}</TimeDisplay></span>
+              <span> <span className="font">Time On Display : <b>{props.room.substr(0, props.room.indexOf('-')).toUpperCase()}</b> </span> <br /> <TimeDisplay>{props.display}</TimeDisplay></span>
             </div>
           </div>
         </div>
