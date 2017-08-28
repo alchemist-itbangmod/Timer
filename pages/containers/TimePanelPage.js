@@ -51,8 +51,8 @@ const TimePanelPage = props => (
           </div>
         </div>
       </div>
-        <div className="columns" style={{marginTop:'2em'}}>
-          <div className="column level-item has-text-centered">
+        <div className="columns" style={{marginTop:'1.3em'}}>
+          <div className="column level-item has-text-centered animated flash">
           <span> <span className="font">Select Time</span> <br /> <SelectTime>{props.hours}:{props.minutes}:{props.seconds}</SelectTime> </span>
           </div>
         </div>
@@ -60,17 +60,17 @@ const TimePanelPage = props => (
           <div className="columns is-desktop">
             <div className="column">
               <Control className="control">
-                <Input className="input" placeholder="Hours" onChange={(e) => { props.setPropsTime(e.target.value, 'h') }} type="number" min="0" />
+                <Input id="hr" className="input" placeholder="Hours" onChange={(e) => { props.setPropsTime(e.target.value, 'h') }} type="number" min="0" />
               </Control>
             </div>
             <div className="column">
               <Control className="control">
-                <Input className="input" placeholder="Minutes" onChange={(e) => { props.setPropsTime(e.target.value, 'm') }} type="number" min="0" />
+                <Input id="min" className="input" placeholder="Minutes" onChange={(e) => { props.setPropsTime(e.target.value, 'm') }} type="number" min="0" />
               </Control>
             </div>
             <div className="column">
               <Control className="control">
-                <Input className="input" placeholder="Seconds" onChange={(e) => { props.setPropsTime(e.target.value, 's') }} type="number" min="0" />
+                <Input id="sec" className="input" placeholder="Seconds" onChange={(e) => { props.setPropsTime(e.target.value, 's') }} type="number" min="0" />
               </Control>
             </div>
           </div>
@@ -160,6 +160,10 @@ const TimePanelPageCompose = compose(
       props.setCurrentTime(newTime)
       props.setDisplay(newTime.format('HH:mm:ss'))
       socket.emit(`${props.room}`, { header: 'setTime', newTime: newTime})
+      document.getElementById('hr').value = '';
+      document.getElementById('min').value = '';
+      document.getElementById('sec').value = '';
+      console.log(document.getElementById('hr').value)
     },
     setPropsTime: props => (val, key) => {
       switch (val.length) {

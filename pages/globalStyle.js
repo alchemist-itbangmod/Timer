@@ -3,6 +3,7 @@ import { injectGlobal } from 'styled-components'
 injectGlobal`
   @import url('./static/css/bulma.css');
   @import url('./static/css/font-awesome.min.css');
+  @import url('./static/css/animate.css');
 
   
   @font-face {

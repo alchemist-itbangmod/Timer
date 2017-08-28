@@ -41,9 +41,9 @@ const TimePage = props => (
         fontFamily: 'digital',
         fontSize: '7em',
         color: '#fff'
-      }}>{props.display}</span>
+      }} className="animated fadeInUp">{props.display}</span>
     </Container>
-    <RoomDisplay className="font"> Room : <b> {props.room.toUpperCase()} </b></RoomDisplay>
+    <RoomDisplay className="font animated fadeInUp"> Room : <b> {props.room.toUpperCase()} </b></RoomDisplay>
   </div>
 )
 
