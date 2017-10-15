@@ -13,8 +13,8 @@ injectGlobal`
   html {
     height: auto;
     min-height: 100vh;
-    background-color: #24292D;
-    // background-image : url('./static/img/bgdesktop.png');
+    // background-color: #24292D;
+    background-image : url('./static/img/bg.png');
     // background-size: cover;
     // background-attachment: fixed;
   }
@@ -57,9 +57,9 @@ injectGlobal`
       text-align: center;
       border-radius: 4px;
       overflow: hidden;
-      background: linear-gradient(to right, #E67207 0%, #EF4E7B 50%, #A166AB 100%);
-      transform: translate3d(0, 0, 0);
-      transition: all .4s ease-out;
+      // background: linear-gradient(to right, #E67207 0%, #EF4E7B 50%, #A166AB 100%);
+      // transform: translate3d(0, 0, 0);
+      // transition: all .4s ease-out;
   }
 
   .btn:before {
@@ -82,8 +82,8 @@ injectGlobal`
       height: 100%;
       width: 100%;
       display: block;
-      transition: all .4s ease-out;
-      background: linear-gradient(to right, #E67207 0%, #EF4E7B 5%, #A166AB 50%);
+      // transition: all .4s ease-out;
+      // background: linear-gradient(to right, #E67207 0%, #EF4E7B 5%, #A166AB 50%);
       z-index: -3;
       opacity: 0
   }
@@ -95,17 +95,18 @@ injectGlobal`
   }
 
   .heading {
-      font-size: 8em;
+      font-size: 4.3em;
       letter-spacing: 3px;
       font-family: 'digital';
       margin-bottom: 0.5em;
+      color: #fff;
       display: inline-block;
-      background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
-      background-size: cover;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
+      // background-image: linear-gradient(90deg, #F79533 0%, #F37055 15%, #EF4E7B 30%, #A166AB 44%, #5073B8 58%, #1098AD 72%, #07B39B 86%, #6DBA82 100%);
+      // background-size: cover;
+      // -webkit-background-clip: text;
+      // -webkit-text-fill-color: transparent;
+      // background-clip: text;
+      // text-fill-color: transparent;
   }
 
   i {
@@ -155,10 +156,10 @@ injectGlobal`
   }
 
   .pin-style {
-    padding: 3em 1em 2em 1em;
+    padding: 2em 1em 2em 1em;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.3);
-    width: 70%;
+    width: 60%;
     height: auto;
     // max-height: 255px;
   }
@@ -178,7 +179,7 @@ injectGlobal`
     text-align: center;
     font-size: 4em;
     margin: 0 10px;
-    width: 50%;
+    width: 70%;
     height: 100px;
   }
 

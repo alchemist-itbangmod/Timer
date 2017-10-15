@@ -78,19 +78,19 @@ io.on('connection', (socket) => {
       case 'C3GGEY':        
         socket.emit('auth', { room: 'time/train4' });
         break;
-      case 'SXZZFD':        
+      case 'SXZZFD':
         socket.emit('auth', { room: 'time/train5' });
         break;
-      case 'DEMONM':        
+      case 'DEMONM':
         socket.emit('auth', { room: 'time/taehub' });
         break;
-      case 'ALC001':        
+      case 'ALC001':
         socket.emit('auth', { room: 'time/alchemist1' });
         break;
-      case 'ALC002':        
+      case 'ALC002':
         socket.emit('auth', { room: 'time/alchemist2' });
         break;
-      case 'ALC003':        
+      case 'ALC003':
         socket.emit('auth', { room: 'time/alchemist3' });
         break;
       case 'ALC004':        

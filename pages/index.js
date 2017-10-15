@@ -14,37 +14,26 @@ import { Link, Router } from './routes'
 import styled from 'styled-components'
 
 
-import './globalStyle'
+import './style'
 
 const Index = props => {
   return (
     <div>
       <Head>
-        <title> Alchemist Timer </title>
+        <title>Timer | SIT CRAFT CAMP</title>
       </Head>
       <div className="index-layouts">
         <div className="bigbox">
-          <h1 className="heading animated fadeInUp">Alchemist Timer</h1>
+          <h1 className="heading animated fadeInUp">SIT CRAFT CAMP Timer!</h1>
           <div className="pin-style animated fadeInUp">
             <input
               type="password"
-              size="1"
               value={props.pin === undefined ? '' : props.pin}
               autoFocus={true}
               onChange={e => props.changePin(e)}
               className="input input-style"
-              onKeyPress={(e) => { ((e.keyCode || e.which) === 13) ? props.login(props) : console.log('not pass') }}
+              onKeyPress={(e) => { ((e.keyCode || e.which) === 13) ? props.goRoom(props) : '' }}
             />
-            <br />
-            <br />
-            <span >
-              <Link route={props.url}>
-                <a onClick={()=>{ props.login(props) }} className="btn animated pulse">
-                  Join
-                  <span className="line-style" />
-                </a>
-              </Link>
-            </span>
           </div>
         </div>
       </div>
@@ -55,12 +44,20 @@ const Index = props => {
 const IndexCompose = compose(
  withState('pin','setPin', ''),
  withState('url','setUrl', '/'),
+ withState('path','setPath', ''),
+ withState('slug','setSlug', ''),
  lifecycle({
    async componentDidMount() {
-     socket.on('auth',(data) => {
-       let url = `/${data.room}`
-       if(data.room)
-         this.props.setUrl(url)
+     socket.on('auth', async (data) => {
+      let url = `/${data.room}`
+      if (data.room) {
+        await this.props.setUrl(url)
+      }
+      let lastSlash = await url.lastIndexOf('/') + 1
+      let prefixPath = await url.substr(url.indexOf('/'), lastSlash - 1)
+      let convertSlug = await url.substr(lastSlash)
+      await this.props.setPath(prefixPath)
+      await this.props.setSlug(convertSlug)
      })
    }
  }),
@@ -86,7 +83,14 @@ const IndexCompose = compose(
       query: { slug: `${convertSlug}` }
     })
     props.setPin('')
-  }
+  },
+  goRoom: props => () => {
+    let { path, slug } = props
+    Router.push({
+      pathname: `/routes${path}`,
+      query: { slug: `${slug}` }
+    })
+  },
  })
 )(Index)
 
