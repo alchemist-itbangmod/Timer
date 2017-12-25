@@ -1,7 +1,7 @@
 import React from 'react'
-import { compose, lifecycle } from 'recompose'
-import styled, { injectGlobal } from 'styled-components'
+import styled from 'styled-components'
 
+import AppLayout from '../Core/AppLayout'
 import { Layout } from '../Core/global'
 
 const Heading = styled.h1`
@@ -26,33 +26,23 @@ const Heading = styled.h1`
   text-fill-color: transparent;
 `
 
-const enchance = lifecycle({
-  async componentWillMount () {
-    injectGlobal`
-      @font-face {
-        font-family: 'segment';
-        src: url('/static/font/Segment7Standard.otf');
-      }
-      @font-face {
-        font-family: 'digital';
-        src: url('/static/font/digital7.ttf');
-      }
-      body {
-        background-size: cover;
-        background-image: url('/static/img/bg.png');
-        font-family: 'digital';
-      }
-    `
-  }
-})
-
-export default compose(enchance)(() => (
+export default AppLayout(() => (
   <Layout>
     <section className='section'>
       <div className='container'>
         <div className='columns is-mobile'>
           <div className='animated fadeInUp column has-text-centered'>
             <Heading>Alchemist Timer</Heading>
+          </div>
+        </div>
+        <div className='columns'>
+          <div className='column has-text-centered'>
+            <input type='password' />
+          </div>
+        </div>
+        <div className='columns'>
+          <div className='column has-text-centered'>
+            <a href='/admin' className='button is-info'>Join Room</a>
           </div>
         </div>
       </div>
