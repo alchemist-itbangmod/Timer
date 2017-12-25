@@ -1,9 +1,9 @@
 import React from 'react'
 
+import AdminContainer from '../components/Admin/Container'
+
 const AdminPage = () => (
-  <div>
-    Admin
-  </div>
+  <AdminContainer />
 )
 
 export default AdminPage
