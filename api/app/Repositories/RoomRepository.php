@@ -1,12 +1,18 @@
 <?php
 
 namespace App\Repositories;
-use App\Interfaces\RoomsRepositoryInterface;
-use App\Models\Rooms;
+use App\Models\Room;
 
 class RoomRepository implements RoomRepositoryInterface
 {
-  public function get() {
-    return true;
+  protected $rooms;
+
+
+  public function __construct(){
+    $this->rooms = new Room;
+  }
+
+  public function getAll() {
+    return $this->rooms->get();
   }
 }
