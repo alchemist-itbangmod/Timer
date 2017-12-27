@@ -16,28 +16,5 @@ Route::prefix('/')->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
-
-    Route::prefix('/api')->group(function () {
-        
-        // Rooms
-        Route::prefix('/rooms')->group(function () {
-            Route::get('/', 'RoomsController@get');
-        });
-
-        // Users
-        Route::prefix('/users')->group(function () {
-            Route::get('/', function () {
-                return 'users';
-            });
-        });
-
-        // Times
-        Route::prefix('/times')->group(function () {
-            Route::get('/', function () {
-                return 'times';
-            });
-        });
-    
-    });
-    
+ 
 });
