@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\RoomsRepositoryInterface;
+use App\Repositories\RoomRepositoryInterface;
 
 class RoomsController extends Controller
 {
     //
     protected $rooms;
     
-    function __construc(RoomsRepositoryInterface $rooms)
+    function __construct(RoomRepositoryInterface $rooms)
     {
         $this->rooms = $rooms;
     }
