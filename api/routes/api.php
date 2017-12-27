@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
@@ -33,4 +31,26 @@ Route::group([
     Route::post('check', 'AuthController@me');
 
 });
+
+// Rooms
+Route::prefix('/rooms')->group(function () {
+
+    Route::get('/', 'RoomsController@get');
+
+});
+
+// Users
+Route::prefix('/users')->group(function ($router) {
+
+    Route::post('/', 'Auth\RegisterController@create');
+    Route::get('/', function () {
+        return 'users';
+    });
+});
+
+// Times
+Route::prefix('/times')->group(function () {
+    Route::get('/', function () {
+        return 'times';
+    });
 });
