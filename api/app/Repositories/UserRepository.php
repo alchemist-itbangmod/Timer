@@ -12,15 +12,15 @@ class UserRepository implements UserRepositoryInterface
   }
 
   public function create($data) {
-    try {
-      return $this->users->create([
-          'name' => $data['name'],
-          'username' => $data['username'],
-          'password' => bcrypt($data['password']),
-      ]);
-    } catch (QueryException $e) {
-      return $e;
-    }
+    return $this->users->create([
+        'name' => $data['name'],
+        'username' => $data['username'],
+        'password' => bcrypt($data['password']),
+    ]);
+  }
+
+  public function getAll() {
+    return $this->users->get();
   }
 
 }
