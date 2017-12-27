@@ -35,7 +35,7 @@ Route::group([
 // Rooms
 Route::prefix('/rooms')->group(function () {
 
-    Route::get('/', 'RoomsController@get');
+    Route::get('/', 'RoomController@get');
 
 });
 
