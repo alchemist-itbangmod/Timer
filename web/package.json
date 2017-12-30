@@ -31,10 +31,11 @@
     "redux-thunk": "^2.2.0",
     "socket.io": "^2.0.4",
     "socket.io-client": "^2.0.4",
-    "styled-components": "^2.2.4",
-    "transform-runtime": "^0.0.0"
+    "styled-components": "^2.2.4"
   },
   "scripts": {
+    "test": ".\\node_modules\\.bin\\jest",
+    "coverage": ".\\node_modules\\.bin\\jest --coverage -u",
     "dev": "next",
     "build": "next build",
     "start": "next start",
