@@ -1,2 +1,0 @@
-# timer
-🕚 Alchemist Timer 🕚
